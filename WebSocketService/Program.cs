@@ -3,6 +3,8 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.WebHost.UseUrls("http://localhost:5042");
+
 builder.Logging.AddConsole();
 
 // Add services to the container.

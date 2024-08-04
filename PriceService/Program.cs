@@ -3,6 +3,8 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.WebHost.UseUrls("http://localhost:5277");
+
 // Add services to the container.
 builder.Services.AddSingleton<IDataProvider, MockDataProvider>();
 builder.Services.AddSingleton<IPriceService, PriceService>(); // Register PriceService as a singleton

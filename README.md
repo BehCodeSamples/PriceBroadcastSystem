@@ -9,7 +9,7 @@
    Run the following command to build and start all services:
 
    ```bash
-   docker-compose up
+   docker-compose up --build
    ```
 
    This command will automatically build the Docker images for your services and start RabbitMQ, PriceService, and WebSocketService within a Docker network.

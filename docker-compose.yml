@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    networks:
+      - my_network
+    ports:
+      - "5672:5672"   # RabbitMQ default port
+      - "15672:15672" # RabbitMQ Management Plugin web UI
+
+  price_service:
+    build:
+      context: ./PriceService
+    container_name: price_service_container
+    networks:
+      - my_network
+    ports:
+      - "5277:8080"
+
+  websocket_service:
+    build:
+      context: ./WebSocketService
+    container_name: websocket_service_container
+    networks:
+      - my_network
+    ports:
+      - "5042:8080"
+
+networks:
+  my_network:
+    driver: bridge

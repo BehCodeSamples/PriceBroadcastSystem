@@ -1,9 +1,7 @@
-using FinancialInstrumentService.Services; 
+using FinancialInstrumentService.Services;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// builder.WebHost.UseUrls("http://localhost:5277");
 
 // Add services to the container.
 builder.Services.AddSingleton<IDataProvider, MockDataProvider>();
@@ -12,7 +10,7 @@ builder.Services.AddControllers();  // Register controllers
 
 // Configure logging
 builder.Logging.ClearProviders();
-builder.Logging.AddConsole(); // Add more logging providers if needed (e.g., Debug, EventSource)
+builder.Logging.AddConsole(); 
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -23,16 +21,12 @@ builder.Services.AddSwaggerGen(c =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-// if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Finance tools API V1");
-        c.RoutePrefix = string.Empty; // Set Swagger UI at the app's root
-    });
-}
-
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Finance tools API V1");
+    c.RoutePrefix = string.Empty; // Set Swagger UI at the app's root
+});
 
 app.UseHttpsRedirection();
 app.UseRouting();

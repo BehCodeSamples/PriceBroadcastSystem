@@ -1,38 +1,35 @@
 # Setup and Run Instructions
 
-## 1. Install Erlang and RabbitMQ
+1. **Navigate to the Root Directory**
 
-- Download Erlang from the [Erlang's official website](https://www.erlang.org/downloads).
-- Download RabbitMQ from the [RabbitMQ's official website](https://www.rabbitmq.com/download.html).
+   Open your terminal or command prompt and navigate to the root directory of your solution where the `docker-compose.yml` file is located.
 
-## 2. Start RabbitMQ
+2. **Start Services**
 
-## 3. Build and Run Projects
+   Run the following command to build and start all services:
 
-For each project (PriceService and WebSocketService), execute the following commands:
+   ```bash
+   docker-compose up
+   ```
 
-```bash
-dotnet build
-dotnet run
-```
+   This command will automatically build the Docker images for your services and start RabbitMQ, PriceService, and WebSocketService within a Docker network.
 
-## 4. Install Postman
+3. **Install Postman**
 
-Download Postman from the [Postman's official website](https://www.postman.com/downloads/).
+   Download Postman from the [Postman's official website](https://www.postman.com/downloads/).
 
-## 5. Create Requests
+4. **Create Requests**
 
-Create requests to interact with the API and WebSockets.
+   Create requests to interact with the API and WebSockets:
 
-API requests are documented in Postman:
+   - API requests:
+     - [List instruments](http://localhost:5277/instruments/v1/list)
+     - [Get instrument price](http://localhost:5277/instruments/price/BTCUSD)
 
-- [List instruments](http://localhost:5277/instruments/v1/list)
-- [Get instrument price](http://localhost:5277/instruments/price/BTCUSD)
+   - WebSocket request:
+     - `ws://localhost:5042/ws`
 
-To subscribe to updates via WebSocket, use:
+5. **Handle High Load Scenarios**
 
-- `ws://localhost:5042/ws`
+   To handle high load scenarios, test situations where you have more active sockets than the configured limit. Scale the number of WebSocketService instances as needed and distribute the load among them using a load balancer, such as [Kong](https://docs.konghq.com/gateway/latest/introduction/) or [Kraken](https://kraken.io/).
 
-## 6. Handle High Load Scenarios
-
-To handle high load scenarios, test the situation where you have more active sockets than the configured limit. Scale the number of WebSocketService instances as needed and distribute the load among them using a load balancer, such as [Kong](https://docs.konghq.com/gateway/latest/introduction/) or [Kraken](https://kraken.io/).

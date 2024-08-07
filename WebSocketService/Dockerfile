@@ -14,8 +14,5 @@ RUN dotnet publish -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 EXPOSE 8080
-# EXPOSE 5042
-# ENV ASPNETCORE_HTTP_PORTS=5042
-# EXPOSE 5277
 COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "WebSocketService.dll"]

@@ -18,6 +18,8 @@ services:
       - my_network
     ports:
       - "5277:8080"
+    depends_on:
+      - rabbitmq
 
   websocket_service:
     build:
@@ -27,6 +29,8 @@ services:
       - my_network
     ports:
       - "5042:8080"
+    depends_on:
+      - rabbitmq
 
 networks:
   my_network:

@@ -2,7 +2,7 @@
 
 1. **Navigate to the Root Directory**
 
-   Open your terminal or command prompt and navigate to the root directory of your solution where the `docker-compose.yml` file is located. !!
+   Open your terminal or command prompt and navigate to the root directory of your solution where the `docker-compose.yml` file is located.
 
 2. **Start Services**
 

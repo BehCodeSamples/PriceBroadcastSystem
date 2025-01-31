@@ -1,4 +1,4 @@
-# Setup and Run Instructions 11
+# Setup and Run Instructions 
 
 1. **Navigate to the Root Directory**
 
